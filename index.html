@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Autos UK — Premium Used Cars</title>
+  <meta name="description" content="Find your perfect used car with Amazon Autos UK. Browse our hand-picked selection of quality vehicles. Get in touch today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #c0392b;
+      --red-dark: #96281b;
+      --dark: #111418;
+      --dark2: #1a1f26;
+      --mid: #2c333d;
+      --muted: #8a95a3;
+      --light: #f4f5f7;
+      --white: #ffffff;
+      --radius: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 6%;
+      background: rgba(17, 20, 24, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .logo {
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px;
+      color: var(--white); text-decoration: none;
+    }
+    .logo span { color: var(--red); }
+
+    nav a.cta-nav {
+      background: var(--red); color: var(--white);
+      padding: 10px 22px; border-radius: var(--radius);
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    nav a.cta-nav:hover { background: var(--red-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 140px 6% 80px;
+      background:
+        linear-gradient(135deg, rgba(192,57,43,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(192,57,43,0.08) 0%, transparent 60%),
+        var(--dark);
+      position: relative; overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute; right: -5%; top: 50%; transform: translateY(-50%);
+      width: 55%; aspect-ratio: 16/9;
+      background:
+        linear-gradient(135deg, #2c333d 0%, #1a1f26 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px);
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 560px; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.4);
+      color: #e57368; font-size: 0.78rem; font-weight: 600;
+      padding: 5px 14px; border-radius: 50px; letter-spacing: 0.5px;
+      margin-bottom: 24px; text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+    h1 span { color: var(--red); }
+
+    .hero-sub {
+      font-size: 1.1rem; color: var(--muted); max-width: 440px;
+      margin-bottom: 40px; line-height: 1.7;
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--red); color: var(--white);
+      padding: 15px 32px; border-radius: var(--radius);
+      text-decoration: none; font-weight: 700; font-size: 1rem;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.18); color: var(--white);
+      padding: 15px 32px; border-radius: var(--radius);
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.06); }
+
+    /* ── STATS ── */
+    .stats {
+      display: flex; gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: var(--dark2);
+    }
+    .stat {
+      flex: 1; text-align: center;
+      padding: 36px 20px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .stat:last-child { border-right: none; }
+    .stat strong { display: block; font-size: 2rem; font-weight: 800; color: var(--red); }
+    .stat span { font-size: 0.85rem; color: var(--muted); margin-top: 4px; display: block; }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 90px 6%; }
+
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800; letter-spacing: -1px; margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--muted); font-size: 1.05rem; max-width: 520px;
+      line-height: 1.7; margin-bottom: 50px;
+    }
+
+    /* ── WHY US ── */
+    .why { background: var(--dark2); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--mid); border-radius: 14px;
+      padding: 32px 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover { border-color: rgba(192,57,43,0.35); transform: translateY(-3px); }
+
+    .card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(192,57,43,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 20px;
+    }
+
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── PROCESS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; position: relative;
+    }
+
+    .step { padding: 0 28px 0 0; position: relative; }
+    .step:last-child { padding-right: 0; }
+
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--red); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.1rem; margin-bottom: 20px;
+      position: relative; z-index: 1;
+    }
+
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--dark2); }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+    }
+
+    .contact-info h2 { margin-bottom: 14px; }
+
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .contact-detail:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); margin-top: 30px; }
+
+    .contact-detail-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(192,57,43,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+
+    .contact-detail strong { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 2px; font-weight: 500; }
+    .contact-detail span { font-size: 0.95rem; font-weight: 600; }
+
+    /* form */
+    form { display: flex; flex-direction: column; gap: 14px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    label { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; display: block; }
+
+    input, select, textarea {
+      width: 100%;
+      background: var(--mid); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white); border-radius: var(--radius);
+      padding: 13px 16px; font-size: 0.95rem; font-family: inherit;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder { color: #4a5260; }
+    input:focus, select:focus, textarea:focus { border-color: var(--red); }
+    select option { background: var(--mid); }
+    textarea { resize: vertical; min-height: 120px; }
+
+    .form-group { display: flex; flex-direction: column; }
+
+    button[type="submit"] {
+      background: var(--red); color: var(--white);
+      border: none; border-radius: var(--radius);
+      padding: 16px 32px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+    button[type="submit"]:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    .form-note {
+      font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 4px;
+    }
+
+    /* success state */
+    .form-success {
+      display: none;
+      background: rgba(46, 160, 67, 0.12); border: 1px solid rgba(46,160,67,0.3);
+      border-radius: var(--radius); padding: 24px; text-align: center;
+      color: #6ee67b;
+    }
+    .form-success h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .form-success p { font-size: 0.9rem; color: #8fa896; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 40px 6%;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      color: var(--muted); font-size: 0.85rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero::after { display: none; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .stats { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-ghost { text-align: center; }
+      nav a.cta-nav { padding: 8px 16px; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Amazon<span>Autos</span> UK</a>
+  <a href="#contact" class="cta-nav">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge">UK Used Car Specialists</div>
+    <h1>Drive Away <span>Happy.</span><br>Quality Cars, Fair Prices.</h1>
+    <p class="hero-sub">We source and supply hand-picked used vehicles across the UK. Every car is inspected, priced fairly, and ready to drive.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Enquire Now</a>
+      <a href="#why-us" class="btn-ghost">Why Choose Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <strong>500+</strong>
+    <span>Cars Sold</span>
+  </div>
+  <div class="stat">
+    <strong>100%</strong>
+    <span>HPI Checked</span>
+  </div>
+  <div class="stat">
+    <strong>UK-Wide</strong>
+    <span>Delivery Available</span>
+  </div>
+  <div class="stat">
+    <strong>5★</strong>
+    <span>Customer Rated</span>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why" id="why-us">
+  <div class="section-label">Why Choose Us</div>
+  <h2>Buying a used car<br>shouldn't be stressful.</h2>
+  <p class="section-sub">We take the guesswork out of used car buying with transparent pricing and a straightforward process.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>HPI Checked</h3>
+      <p>Every vehicle is fully HPI checked — no hidden history, no surprises.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Mechanically Inspected</h3>
+      <p>All cars go through a thorough mechanical check before being offered for sale.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💷</div>
+      <h3>Fair, Transparent Pricing</h3>
+      <p>No hidden fees. The price you see is the price you pay — simple as that.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚚</div>
+      <h3>UK-Wide Delivery</h3>
+      <p>Can't make it to us? We can arrange delivery direct to your door anywhere in the UK.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>Part Exchange Welcome</h3>
+      <p>We consider part exchange on most vehicles. Get in touch with your details.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Personal Service</h3>
+      <p>No pushy salespeople — just honest, straightforward advice to help you decide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label">How It Works</div>
+  <h2>Three simple steps.</h2>
+  <p class="section-sub">Getting your next car through Amazon Autos is quick and hassle-free.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Get in Touch</h3>
+      <p>Fill in the contact form below with your requirements — budget, preferred make/model, or any questions.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>We Find Your Car</h3>
+      <p>We'll match you with available stock or source the right vehicle for your budget and needs.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Drive Away</h3>
+      <p>Collect from us or have it delivered. All paperwork handled — stress-free from start to finish.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="section-label">Contact Us</div>
+      <h2>Interested? Let's talk.</h2>
+      <p class="section-sub" style="margin-bottom:0">Tell us what you're looking for and we'll get back to you within one business day.</p>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📧</div>
+        <div>
+          <strong>Email</strong>
+          <span>shregz@gmail.com</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🇬🇧</div>
+        <div>
+          <strong>Location</strong>
+          <span>United Kingdom</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">⏱️</div>
+        <div>
+          <strong>Response Time</strong>
+          <span>Within 1 business day</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap">
+      <!--
+        SETUP INSTRUCTIONS:
+        1. Go to https://formspree.io and create a free account
+        2. Create a new form and link it to shregz@gmail.com
+        3. Replace "YOUR_FORM_ID" in the action URL below with your actual Formspree form ID
+           e.g. action="https://formspree.io/f/abc12345"
+      -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="New enquiry from Amazon Autos UK website" />
+        <input type="hidden" name="_next" value="" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="07xxx xxxxxx" />
+          </div>
+          <div class="form-group">
+            <label for="budget">Budget</label>
+            <select id="budget" name="budget">
+              <option value="">Select budget...</option>
+              <option>Under £5,000</option>
+              <option>£5,000 – £10,000</option>
+              <option>£10,000 – £20,000</option>
+              <option>£20,000 – £30,000</option>
+              <option>£30,000+</option>
+              <option>Open / Flexible</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="interest">What are you looking for?</label>
+          <input type="text" id="interest" name="interest" placeholder="e.g. BMW 3 Series, family SUV, diesel estate…" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Anything else? (part-ex, finance, delivery…)</label>
+          <textarea id="message" name="message" placeholder="Feel free to ask anything…"></textarea>
+        </div>
+
+        <button type="submit">Send Enquiry &rarr;</button>
+        <p class="form-note">We'll reply to your email within one business day.</p>
+      </form>
+
+      <div class="form-success" id="form-success">
+        <h3>Message sent!</h3>
+        <p>Thanks for getting in touch — we'll reply to your email within one business day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Amazon Autos UK &mdash; <a href="mailto:shregz@gmail.com">shregz@gmail.com</a></p>
+</footer>
+
+<script>
+  // Smooth Formspree AJAX submission
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
